@@ -25,3 +25,7 @@ decimals = contract.functions.decimals().call()
 
 print(f"Token balance for {account}:")
 print(f"{balance} (decimals: {decimals})")
+
+usdc_balance = balance / (10 ** decimals)
+
+print(f"USDC Balance: {usdc_balance}")

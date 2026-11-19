@@ -76,5 +76,34 @@ class Blockchain:
 if __name__ == "__main__":
     blockchain = Blockchain()
 
-    # Add your code here
-    
+    # Exercise 2.2
+    blockchain.append_block("Blockchain")
+    blockchain.append_block("Is")
+    blockchain.append_block("Awesome")
+
+    print(blockchain)
+
+    print("\nFinal Block Hash:")
+    print(blockchain.get_last_block().header_hash())
+
+    # Exercise 2.3
+    blockchain.blocks[2].data = "Is very"
+
+    print("\nAfter Tampering:")
+    print(Blockchain.validate(blockchain.blocks))
+
+    # Rebuild final block using the new hash of block 2
+    blockchain.blocks[3] = Block(
+        3,
+        "Awesome",
+        blockchain.blocks[2].header_hash()
+    )
+
+    print("\nBlockchain After Fixing:")
+    print(blockchain)
+
+    print("\nValid Chain:")
+    print(Blockchain.validate(blockchain.blocks))
+
+    print("\nNew Final Block Hash:")
+    print(blockchain.blocks[3].header_hash())
